@@ -107,6 +107,8 @@
     }
     .cta-link:hover,
     .cta-link:focus-visible { filter: brightness(1.08); }
+    /* ensure the CTA text stays black */
+    .topnav .nav-links .cta-link { color: #0F171D !important; }
     header {
       position: relative;
       overflow: hidden;
@@ -145,6 +147,8 @@
       width: min(1180px, calc(100% - 40px));
       padding: 0 clamp(20px, 5vw, 56px);
     }
+    /* vertically center hero content so the portrait sits midline */
+    header .hero-inner { align-items: center; }
     .hero-copy { max-width: 640px; }
     .hero-copy h1 {
       margin: 0;
@@ -167,6 +171,9 @@
       position: relative;
       width: min(420px, 80vw);
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .hero-image::before {
       content: '';
@@ -430,7 +437,7 @@
       </div>
 
       <div class="hero-inner page-width" style="grid-template-columns: 1fr; gap: 20px; margin-top: 40px;">
-        <div class="hero-pill" data-reveal>About Me</div>
+        <div class="hero-pill" data-reveal>About</div>
         <div class="hero-stats" data-reveal>
           <div class="stat-card">
             <p><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>Access-config complexity cut</p>

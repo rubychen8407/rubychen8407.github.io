@@ -95,3 +95,20 @@
   // bootstrap on DOM ready
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ()=>{ safe(initReveal); safe(initCarousel); safe(initFun); }); else { safe(initReveal); safe(initCarousel); safe(initFun); }
 })();
+
+// Quick runtime UI fixes for edge cases where static CSS wasn't applied
+(function(){
+  function applyQuickFixes(){
+    try{
+      const cta = document.querySelector('.nav-links .cta-link');
+      if(cta) cta.style.color = '#0F171D';
+      const pill = document.querySelector('.hero-pill');
+      if(pill) pill.textContent = 'About';
+      const hinner = document.querySelector('header .hero-inner');
+      if(hinner) hinner.style.alignItems = 'center';
+      const himg = document.querySelector('.hero-image');
+      if(himg){ himg.style.display = 'flex'; himg.style.alignItems = 'center'; himg.style.justifyContent = 'center'; }
+    }catch(e){ console.warn('ui-fix failed', e); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyQuickFixes); else applyQuickFixes();
+})();
