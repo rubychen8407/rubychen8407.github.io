@@ -621,6 +621,25 @@
       if (dot) { dot.style.background = 'var(--acc,#D6EE4B)'; dot.style.boxShadow = '0 0 8px var(--acc,#D6EE4B)'; dot.style.animation = 'rc-glow 0.88s ease-in-out infinite'; }
     }
     btn.addEventListener('click', function () { on ? stop() : start(); });
+
+    // On by default: try immediately; if the browser blocks autoplay,
+    // begin on the visitor's first interaction anywhere on the page.
+    var kick = function () {
+      window.removeEventListener('pointerdown', kick);
+      window.removeEventListener('keydown', kick);
+      window.removeEventListener('touchstart', kick);
+      window.removeEventListener('scroll', kick);
+      if (!on) { start(); return; }
+      if (ac && ac.state !== 'running') ac.resume();
+    };
+    start();
+    setTimeout(function () {
+      if (ac && ac.state === 'running') return; // autoplay allowed — already beating
+      window.addEventListener('pointerdown', kick, { once: true });
+      window.addEventListener('keydown', kick, { once: true });
+      window.addEventListener('touchstart', kick, { once: true, passive: true });
+      window.addEventListener('scroll', kick, { once: true, passive: true });
+    }, 300);
   })();
 })();
 </script>
