@@ -613,7 +613,7 @@
       if (ac.state === 'suspended') ac.resume();
       master.gain.setTargetAtTime(0.5, ac.currentTime, 0.05);
       on = true;
-      var bpm = 68, period = 60 / bpm;
+      var bpm = 40, period = 60 / bpm;
       beat(ac.currentTime + 0.05);
       timer = setInterval(function () { if (ac) beat(ac.currentTime + 0.02); }, period * 1000);
       btn.setAttribute('aria-pressed', 'true');
